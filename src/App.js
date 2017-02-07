@@ -15,11 +15,16 @@ const TitleTextStyle = {
   paddingBottom: "10px",
 };
 
+const AcknowlegementsTextStyle = {
+  fontSize: 8,
+  fontFamily: "Avenir",
+};
+
 class Title extends Component {
   render() {
     return (
       <div style={CenteredStyle}>
-        <text style={TitleTextStyle}>Fact Check pA 0.1</text>
+        <text style={TitleTextStyle}>Fact Checker</text>
       </div>
     );
   }
@@ -35,12 +40,23 @@ class CheckerButton extends Component {
   }
 }
 
+class Acknowlegements extends Component {
+  render() {
+    return (
+      <footer style={CenteredStyle}>
+        <text style={AcknowlegementsTextStyle}>built by Daniel Spokoyny, Tate Allen, etc</text>
+      </footer>
+    );
+  }
+}
+
 class App extends Component {
   render() {
     return (
       <div>
         <Title />
         <CheckerButton />
+        <Acknowlegements />
       </div>
       // <div className="App">
       //   <div className="App-header">
