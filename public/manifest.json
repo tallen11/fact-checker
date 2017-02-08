@@ -20,7 +20,7 @@
   ],
 
   "browser_action": {
-    "default_icon": "logo_small.png",
+    "default_icon": "unnamed.png",
     "default_popup": "index.html"
   }
 }
