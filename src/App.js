@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+/*global chrome*/
+
 const CenteredStyle = {
   display: "flex",
   alignItems: "center",
@@ -18,6 +20,7 @@ const TitleTextStyle = {
 const AcknowlegementsTextStyle = {
   fontSize: 8,
   fontFamily: "Avenir",
+  padding: "10px",
 };
 
 class Title extends Component {
@@ -34,7 +37,13 @@ class CheckerButton extends Component {
   render() {
     return (
       <div style={CenteredStyle}>
-        <button style={{width: "75%"}}>Check</button>
+        <button style={{width: "75%"}} onClick={(e) => {
+            chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+              chrome.tabs.sendMessage(tabs[0].id, {fact_req: "get_sel_txt"}, function(response) {
+                console.log(response.farewell);
+              });
+            });
+          }}>Check</button>
       </div>
     );
   }
@@ -58,15 +67,6 @@ class App extends Component {
         <CheckerButton />
         <Acknowlegements />
       </div>
-      // <div className="App">
-      //   <div className="App-header">
-      //     <img src={logo} className="App-logo" alt="logo" />
-      //     <h2>Welcome to React</h2>
-      //   </div>
-      //   <p className="App-intro">
-      //     To get started, edit <code>src/App.js</code> and save to reload.
-      //   </p>
-      // </div>
     );
   }
 }
